@@ -32,4 +32,12 @@ self.addEventListener('activate', e => {
 //evento fetch para descargar evcentos estaticos
 self.addEventListener('fetch', e => {
     console.log('fetch ...',e);
+    e.respondWith(
+        caches.match(e.request)
+        .then(res => {
+            return res;
+})
+        
+    );
+
 })
