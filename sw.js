@@ -3,11 +3,12 @@ const nombreCache='apv-v1';
 //cachear archivos
 const archivos = [
     '/',
-    '/index.html',
-    '/css/bootstrap.css',
-    '/css/estilos.css',
-    '/js/app.js',
-    '/js/apv.js'
+    'index.html',
+    'css/bootstrap.css',
+    'css/styles.css',
+    'js/app.js',
+    'js/apv.js',
+    'manifest.json'
 ];
 
 //cuando se instala el service worker, se registra en el navegador y se guarda en el cache
@@ -18,10 +19,11 @@ self.addEventListener('install', e => {
         .then(cache => {
             console.log('cacheando archivos');
             cache.addAll(archivos);
-        }
+        })
 
     )
-})
+});
+
 self.addEventListener('activate', e => {
     console.log('Service worker activado');
     console.log(e);
