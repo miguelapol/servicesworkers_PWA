@@ -1,3 +1,5 @@
+
+const nombreCache='apv-v1';
 //cachear archivos
 const archivos = [
     '/',
@@ -11,7 +13,14 @@ const archivos = [
 //cuando se instala el service worker, se registra en el navegador y se guarda en el cache
 self.addEventListener('install', e => {
     console.log('Evento install disparado');
-    console.log(e);
+    e.waitUntil(
+        caches.open(nombreCache)
+        .then(cache => {
+            console.log('cacheando archivos');
+            cache.addAll(archivos);
+        }
+
+    )
 })
 self.addEventListener('activate', e => {
     console.log('Service worker activado');
