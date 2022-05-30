@@ -1,3 +1,13 @@
+//cachear archivos
+const archivos = [
+    '/',
+    '/index.html',
+    '/css/bootstrap.css',
+    '/css/estilos.css',
+    '/js/app.js',
+    '/js/apv.js'
+];
+
 //cuando se instala el service worker, se registra en el navegador y se guarda en el cache
 self.addEventListener('install', e => {
     console.log('Evento install disparado');
