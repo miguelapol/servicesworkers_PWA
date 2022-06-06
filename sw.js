@@ -1,5 +1,5 @@
 
-const nombreCache='apv-v1';
+const nombreCache='apv-v6';
 //cachear archivos
 const archivos = [
     '/',
@@ -26,8 +26,18 @@ self.addEventListener('install', e => {
 });
 
 self.addEventListener('activate', e => {
+    //en esta parte borraremos los apvs antiguos
     console.log('Service worker activado');
-    console.log(e);
+    e.waitUntil(
+        caches.keys()
+        .then(keys=>{
+            // console.log(keys);
+            return Promise.all(
+                keys.filter(key => key !== nombreCache)
+                .map(key => caches.delete(key))//borar los demas apvs
+            )
+        })
+    )
 })
 
 //evento fetch para descargar evcentos estaticos
